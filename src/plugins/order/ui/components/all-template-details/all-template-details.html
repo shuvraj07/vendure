@@ -1,0 +1,114 @@
+<vdr-page-header>
+    <vdr-page-title></vdr-page-title>
+</vdr-page-header>
+
+<vdr-page-body>
+    <vdr-page-block>
+        <vdr-action-bar>
+            <vdr-ab-left></vdr-ab-left>
+            <vdr-ab-right>
+                <button
+                    class="button primary"
+                    *ngIf="which; else updateButton"
+                    (click)="create()"
+                    [disabled]="detailForm.pristine || detailForm.invalid"
+                >
+                    {{ 'common.create' | translate }}
+                </button>
+                <ng-template #updateButton>
+                    <button
+                        class="btn btn-primary"
+                        (click)="update()"
+                        [disabled]="detailForm.pristine || detailForm.invalid"
+                    >
+                        {{ 'common.update' | translate }}
+                    </button>
+                </ng-template>
+            </vdr-ab-right>
+        </vdr-action-bar>
+    </vdr-page-block>
+
+    <form class="form" [formGroup]="detailForm">
+        <vdr-page-detail-layout></vdr-page-detail-layout>
+
+        <vdr-page-block>
+            <vdr-card>
+                <vdr-form-field label="Type" for="type">
+                    <select id="type" formControlName="type">
+                        <option value="EMAIL">Email</option>
+                        <option value="PHONE">Phone</option>
+                        <option value="APP">App</option>
+                    </select>
+                </vdr-form-field>
+                <vdr-form-field label="Category" for="category">
+                    <select id="category" formControlName="category">
+                        <option value="MARKETING">Marketing</option>
+                        <option value="PROMOTIONS">Promotions</option>
+                    </select>
+                </vdr-form-field>
+
+                <vdr-form-field label="Name" for="name">
+                    <input type="text" id="name" formControlName="name" [readonly]="!'UpdateSettings'" />
+                </vdr-form-field>
+
+                <vdr-form-field label="Subject" for="subject" *ngIf="showSubject">
+                    <input
+                        type="text"
+                        id="subject"
+                        formControlName="subject"
+                        [readonly]="!'UpdateSettings'"
+                    />
+                </vdr-form-field>
+
+                <vdr-form-field label="Body" for="Body">
+                    <div class="custom-tinymce-container">
+                        <editor
+                            formControlName="body"
+                            apiKey="jj9tqt7vekad6w91fmujnh705v6we2f94xj1dancy8cbziqm"
+                            [init]="{
+                                branding: false,
+                                selector: 'textarea',
+                                backcolor: 'black',
+                                content_css: 'body { background-color: black; color: white; }',
+
+                                editor_css: '/.tinymce-styles.css',
+                                plugins: [
+                                    'advlist',
+                                    'autolink',
+                                    'link',
+                                    
+                                    'lists',
+                                    'charmap',
+                                    'preview',
+                                    'anchor',
+                                    'pagebreak',
+                                    'searchreplace',
+                                    'wordcount',
+                                    'visualblocks',
+                                    'code',
+                                    'fullscreen',
+                                    'insertdatetime',
+                                    'media',
+                                    'table',
+                                    'emoticons',
+                                    'template',
+                                    'codesample'
+                                ],
+                                toolbar:
+                                    'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | uploadimage |' +
+                                    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                                    'forecolor backcolor emoticons',
+                                menu: {
+                                    favs: {
+                                        title: 'menu',
+                                        items: 'code visualaid | searchreplace | emoticons'
+                                    }
+                                }
+                            }"
+                        ></editor>
+                    </div>
+                </vdr-form-field>
+            </vdr-card>
+        </vdr-page-block>
+    </form>
+</vdr-page-body>

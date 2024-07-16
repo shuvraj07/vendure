@@ -22,6 +22,7 @@
         "@vendure/asset-server-plugin": "^2.2.3",
         "@vendure/core": "^2.2.3",
         "@vendure/email-plugin": "^2.2.3",
+        "axios": "^1.7.2",
         "dotenv": "16.3.1",
         "pg": "8.11.3",
         "typescript": "5.4.5"
@@ -36,9 +37,9 @@
         "@vendure/ui-devkit": "^2.2.3",
         "concurrently": "8.2.2",
         "husky": "^8.0.0",
-        "sharp": "0.33.0",
         "lint-staged": "^15.2.0",
         "prettier": "^3.1.1",
+        "sharp": "^0.33.4",
         "ts-node": "10.9.2",
         "ts-node-dev": "^2.0.0"
     },
@@ -46,5 +47,6 @@
         "**/*": [
             "yarn format"
         ]
-    }
+    },
+    "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

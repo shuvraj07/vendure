@@ -11,6 +11,8 @@ import 'dotenv/config';
 import { customAdminUi } from './custom-admin-ui/compile-admin-ui';
 
 import path from 'path';
+import { OrderPlugin } from './plugins/order/orderPlugin';
+import { UberEatsPlugin } from './plugins/ncm/fcm.plugin';
 
 const IS_DEV = process.env.APP_ENV === 'dev';
 const UI_DEV = process.env.UI_ENV === 'dev';
@@ -50,7 +52,7 @@ export const config: VendureConfig = {
         type: 'postgres',
         // See the README.md "Migrations" section for an explanation of
         // the `synchronize` and `migrations` options.
-        synchronize: false,
+        synchronize: true,
         migrations: [path.join(__dirname, './migrations/*.+(js|ts)')],
         logging: false,
         database: process.env.DB_NAME,
@@ -97,5 +99,8 @@ export const config: VendureConfig = {
             port: 3002,
             app: customAdminUi({ devMode: UI_DEV, recompile: UI_DEV }),
         }),
+        // OrderPlugin,
+        UberEatsPlugin,
+        OrderPlugin,
     ],
 };
